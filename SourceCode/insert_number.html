@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <style>
+        #result {
+            background-color: aqua;
+            color: white;
+        }
+    </style>
+    <script>
+        var arr = [];
+        function right() {
+            var right_value = document.getElementById("number2").value;
+            arr.push(right_value);
+            document.getElementById("number2").value = "";
+        }
+
+        function left() {
+            var left_value = document.getElementById("number1").value;
+            arr.unshift(left_value);
+            document.getElementById("number1").value = "";
+        }
+        function left_enterkey() {
+            if (
+                window.event.keyCode == 13 &&
+                !document.getElementById("number1").value == ""
+            ) {
+                left();
+                document.getElementById("result").innerHTML = arr;
+            }
+        }
+
+        function right_enterkey() {
+            if (
+                window.event.keyCode == 13 &&
+                !document.getElementById("number2").value == ""
+            ) {
+                right();
+                document.getElementById("result").innerHTML = arr;
+            }
+        }
+
+        function addsub() {
+            var result = 0;
+            if (arguments.length == 0) {
+                return alert("인자가 없습니다");
+            } else if (arguments.length == 1) {
+                return alert("인자가 부족합니다");
+            } else if (arguments.length == 2) {
+                result = arguments[0];
+                for (var i = 1; i < arguments.length; i++) {
+                    result = result + arguments[i];
+                }
+                return alert(result);
+            } else if (arguments.length == 3) {
+                result = arguments[0];
+                for (var i = 1; i < arguments.length; i++) {
+                    result = result - arguments[i];
+                }
+                return alert(result);
+            } else if (arguments.length == 4) {
+                result = arguments[0];
+                for (var i = 1; i < arguments.length; i++) {
+                    result = result * arguments[i];
+                }
+                return alert(result);
+            } else if (arguments.length == 5) {
+                result = arguments[0];
+                for (var i = 1; i < arguments.length; i++) {
+                    result = result / arguments[i];
+                }
+                return alert(result);
+            } else if (arguments.length >= 6) {
+                var result = arguments[0];
+                for (var i = 1; i < arguments.length; i = i + 2) {
+                    result = result + arguments[i];
+                }
+                for (var j = 2; j < arguments.length; j = j + 2) {
+                    result = result - arguments[j];
+                }
+                return alert(result);
+            }
+        }
+
+        function singer(name, songName) {
+            this.name = name;
+            this.songName = songName;
+            this.song = function () {
+                return this.name + "가 부릅니다" + this.songName;
+                console.log(this.name + "가 부릅니다" + this.songName);
+            };
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <input id=number1 onkeyup="left_enterkey();" type="number">
+    <span id='result'></span>
+    <input id=number2 onkeyup="right_enterkey();" type="number">
+</body>
+
+</html>
