@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Document</title>
+    <script>
+        document.getElementById("btn1").addEventListener("click", submit);
+
+        function submit() {
+            var date1 = date1 = document.getElementById("date1").value;
+            var year1 = date1.substr(0, 4);
+
+            var month1 = date1.substr(4, 2);
+            var day1 = date1.substr(6, 2);
+            var date1_date = new Date(year1, month1, day1);
+
+            console.log(date1_date);
+            var date2 = document.getElementById("date2").value;
+            var year2 = date2.substr(0, 4);
+            var month2 = date2.substr(4, 2);
+            var day2 = date2.substr(6, 2);
+            var date2_date = new Date(year2, month2, day2);
+            if (year1 < 1900 || year1 > 2999 || year2 < 1900 || year2 > 2999) {
+                alert("날짜를 다시 입력해주세요");
+                return
+            }
+            var diff = (date1_date.getTime() - date2_date.getTime()) / (1000 * 60 * 60 * 24);
+            if (diff < 0) {
+                diff = diff * -1;
+            }
+            alert(year1 + "년" + month1 + "월" + day1 + "일과" + year2 + "년" + month2 + "월" + day2 + "일의 차이는" + diff + "일 입니다.");
+
+        }
+    </script>
+</head>
+
+<body>
+    <input type="text" id="date1">
+    <input type="text" id="date2">
+    <button id="btn1">입력</button>
+</body>
+
+</html>
