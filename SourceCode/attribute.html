@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            document.getElementById("btn1").addEventListener("click", setvalue, false);
+            document.getElementById("btn2").addEventListener("click", getvalue, false);
+            document.getElementById("btn3").addEventListener("click", deletevalue, false);
+        }
+
+
+        var array = {};
+        function setvalue() {
+
+            var input = document.getElementById("input").value;
+            var inputsp = input.split('=');
+            console.log(inputsp.length);
+            if (inputsp.length == 2) {
+                array[inputsp[0]] = inputsp[1];
+                document.getElementById("input").setAttribute(inputsp[0], inputsp[1]);
+                document.getElementById("get").innerHTML = "set success";
+            }
+            else {
+                alert("형식이 잘못되었습니다. 다시입력해주세요");
+            }
+        }
+        function getvalue() {
+            var input = document.getElementById("input").value;
+
+            console.log(input);
+            if (document.getElementById("input").hasAttribute(input)) {
+                alert(input + "의 속성값은" + document.getElementById("input").getAttribute(input) + "입니다.");
+                document.getElementById("get").innerHTML = "get success";
+            }
+            else {
+
+                alert("a의 속성값이 없습니다.");
+                document.getElementById("get").innerHTML = "get failed";
+            }
+
+        }
+        function deletevalue() {
+            var input = document.getElementById("input").value;
+
+            console.log(input);
+            if (document.getElementById("input").hasAttribute(input)) {
+                console.log(array[input]);
+                document.getElementById("input").removeAttribute(input);
+                document.getElementById("get").innerHTML = "delete success";
+            }
+            else {
+                alert("a의 속성값이 없습니다.");
+                document.getElementById("get").innerHTML = "delete failed";
+            }
+
+        }
+
+
+
+    </script>
+</head>
+
+<body>
+
+    <input type="text" id="input">
+    <button id="btn1">set</button>
+    <button id="btn2">get</button>
+    <button id="btn3">delete</button>
+    <h1 id="get"></h1>
+
+</body>
+
+</html>
